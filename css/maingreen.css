@@ -197,21 +197,28 @@ footer li:last-child:after {
 }
 
 @media only screen and (max-width: 480px) {
-    /* Style adjustments for viewports that meet the condition */
+
     h1 {
         font-size: 4em;
         margin: 0.8em 0 1.4em 0;
     }
+    
+    .copytext {
+        margin-bottom: 1em;
+        max-width: none;
+    }
+
     footer li {
         list-style-type: none;
         display: block;
     }
 }
 
+/*
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for high resolution devices */
-}
+     Style adjustments for high resolution devices
+}*/
 
 
 /* ==========================================================================
