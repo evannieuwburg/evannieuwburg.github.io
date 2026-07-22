@@ -286,6 +286,7 @@
   const $  = (s, r) => (r || document).querySelector(s);
   const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
   const today = () => new Date().toISOString().slice(0, 10);
+  let pezenDate = today(), voedingDate = today();
   const nl = d => { const [y,m,dd] = d.split('-'); return `${dd}-${m}-${y}`; };
   const num = v => { const n = parseFloat(String(v).replace(',', '.')); return isFinite(n) ? n : null; };
 
@@ -503,12 +504,12 @@
 
   // ---------- PEZEN ----------
   function renderPezen(v) {
-    const d = $('#dateP') ? $('#dateP').value : today();
+    const d = pezenDate;
     const rec = S.pezen[d] || { hiel: null, iso: null, kg: '', wig: null, elbR: null, elbL: null, pols: null, note: '' };
 
     const dl = el('label', 'field-label', 'Datum'); v.append(dl);
     const di = el('input'); di.type = 'date'; di.id = 'dateP'; di.value = d;
-    di.oninput = () => render();
+    di.oninput = () => { pezenDate = di.value; render(); };
     v.append(di);
 
     v.append(el('hr', 'rule'));
@@ -621,12 +622,12 @@
 
   // ---------- VOEDING ----------
   function renderVoeding(v) {
-    const d = $('#dateV') ? $('#dateV').value : today();
+    const d = voedingDate;
     const rec = S.voeding[d] || { kcal: '', eiwit: '', note: '' };
 
     v.append(el('label', 'field-label', 'Datum'));
     const di = el('input'); di.type = 'date'; di.id = 'dateV'; di.value = d;
-    di.oninput = () => render();
+    di.oninput = () => { voedingDate = di.value; render(); };
     v.append(di);
 
     v.append(el('hr', 'rule'));
